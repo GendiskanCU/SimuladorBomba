@@ -1,0 +1,4 @@
+#Sat Sep 24 13:01:13 CEST 2022
+base.0=E\:\\Proyectos Motores\\SimuladorBomba\\SimuladorBomba\\Library\\Bee\\Android\\Prj\\Mono2x\\Gradle\\launcher\\build\\intermediates\\dex\\release\\mergeDexRelease\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
