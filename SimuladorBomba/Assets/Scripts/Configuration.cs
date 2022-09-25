@@ -42,5 +42,23 @@ public class Configuration : MonoBehaviour
             secondsText.text = currentValue.ToString();
         }
     }
+
+    public void OnDoneButton()
+    {
+        float newSeconds = float.Parse(secondsText.text);
+        float newSFXVolume = volumeSFXBar.value;
+        float newAmbianceVolume = volumeMusicBar.value;
+        
+        PlayerPrefs.SetFloat("TOTAL_SECONDS", newSeconds);
+        PlayerPrefs.SetFloat("SFX_VOLUME", newSFXVolume);
+        PlayerPrefs.SetFloat("AMBIANCE_VOLUME", newAmbianceVolume);
+
+        SoundManager.SharedInstance.SetVolumeEffects(newSFXVolume);
+        SoundManager.SharedInstance.SetVolumeAmbiance(newAmbianceVolume);
+        
+        GameObject.Find("MagneticBomb").GetComponent<Timer>().SetInitialTime();
+        
+        gameObject.SetActive(false);
+    }
     
 }

@@ -26,6 +26,9 @@ public class Timer : MonoBehaviour
     [SerializeField] [Tooltip("Sonido de la explosión")]
     private AudioClip explosionSound;
 
+    [SerializeField] [Tooltip("Sonido botón de Stop")]
+    private AudioClip stopSound;
+
     //Segundos de duración del temporizador
     private float totalSeconds;
 
@@ -113,6 +116,16 @@ public class Timer : MonoBehaviour
             configurationPanel.gameObject.SetActive(true);
         }
     }
+
+    public void OnStopButton()
+    {
+        if (timerOn)
+        {
+            SoundManager.SharedInstance.StopAmbianceSound();
+            SoundManager.SharedInstance.PlayEffectSound(stopSound);
+            ResetTimer();
+        }
+    }
     
 
     private void ChangeTimerStatus()
@@ -136,7 +149,7 @@ public class Timer : MonoBehaviour
     }
 
 
-    private void SetInitialTime()
+    public void SetInitialTime()
     {
         timerOn = false;
         totalSeconds = PlayerPrefs.GetFloat("TOTAL_SECONDS");
@@ -147,10 +160,10 @@ public class Timer : MonoBehaviour
     private void ResetTimer()
     {
         endOfTimeEffect.gameObject.SetActive(false);
+        SoundManager.SharedInstance.SetVolumeEffects(PlayerPrefs.GetFloat("SFX_VOLUME"));
         timerText.gameObject.SetActive(false);
         statusPanel.Reset();
         SetInitialTime();
-        SoundManager.SharedInstance.SetVolumeEffects(0.5f);
     }
 }
 

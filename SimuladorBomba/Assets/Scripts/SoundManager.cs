@@ -82,6 +82,10 @@ public class SoundManager : MonoBehaviour
             vol = 1f;
         else if (newVolume < 0f)
             vol = 0f;
+        else
+        {
+            vol = newVolume;
+        }
         
         ambienceSource.volume = vol;
     }
