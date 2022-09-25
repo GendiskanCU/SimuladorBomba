@@ -142,7 +142,11 @@ public class Timer : MonoBehaviour
         
         SoundManager.SharedInstance.StopAmbianceSound();
         endOfTimeEffect.gameObject.SetActive(true);
-        SoundManager.SharedInstance.SetVolumeEffects(1f);
+        if (PlayerPrefs.GetFloat("SFX_VOLUME") > 0f)
+        {
+            SoundManager.SharedInstance.SetVolumeEffects(1f);
+        }
+
         SoundManager.SharedInstance.PlayEffectSound(explosionSound);
         
         Invoke("ResetTimer", 8f);
